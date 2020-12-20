@@ -1,0 +1,188 @@
+using System;
+
+using System.Threading;
+
+
+namespace TicTacToeidrisulu
+
+{
+
+    class Program
+
+    {
+
+
+
+
+
+        static char[] array1 = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }; //making array  
+
+        static int player = 1; // x=player1 O=player2  
+
+        static int choice; //holds the choice at which position user want to mark   
+
+
+
+        // if the value is 0, the game continues , if the value is 1, all the fields are full
+        static int flag = 0;
+
+
+
+        static void Main(string[] args)
+
+        {
+            Console.WriteLine("Welcome To Tic-Tac-Toe Game!");
+
+            do
+
+            {
+
+
+
+                Console.WriteLine("\n");
+                idrisBoard();
+                Console.WriteLine("\n");
+
+                if (player % 2 == 0)// O's turn.  
+
+                {
+
+                    Console.Write("O's Move =>");
+
+                }
+
+                else // X's turn.
+
+                {
+
+                    Console.Write("X's Move =>");
+
+                }
+
+
+
+                  
+
+                choice = int.Parse(Console.ReadLine());// reading users's entered value   
+
+
+
+                  
+
+                if (array1[choice] != 'X' && array1[choice] != 'O')
+
+                {
+
+                    if (player % 2 == 0) // if the O's turn - write it O  where the 'choice' value is entered.
+
+                    {
+
+                        array1[choice] = 'O';
+
+                        player++; 
+
+                    }
+
+                    else //if the X's turn - write it X  where the 'choice' value is entered.
+
+                    {
+
+                        array1[choice] = 'X';
+
+                        player++;
+
+                    }
+
+                }
+
+                else //If the field you tried to mark is full, show the message 
+
+                {
+
+                    Console.WriteLine("Illegal Move. Try Again.");
+
+
+
+                }
+
+                flag = fullboard();
+
+
+            } while (flag == 0); // The game  continues  
+
+            idrisBoard();  
+
+            if (flag == 1) // getting filled board 
+            {
+                Console.WriteLine("Game Over.");
+            }
+
+        }
+
+         
+
+        private static void idrisBoard() // this is a gameboard function.
+
+        {
+
+            Console.WriteLine("     |     |      ");
+
+            Console.WriteLine("  {0}  |  {1}  |  {2}", array1[1], array1[2], array1[3]);
+
+            Console.WriteLine("_____|_____|_____ ");
+
+            Console.WriteLine("     |     |      ");
+
+            Console.WriteLine("  {0}  |  {1}  |  {2}", array1[4], array1[5], array1[6]);
+
+            Console.WriteLine("_____|_____|_____ ");
+
+            Console.WriteLine("     |     |      ");
+
+            Console.WriteLine("  {0}  |  {1}  |  {2}", array1[7], array1[8], array1[9]);
+
+            Console.WriteLine("     |     |      ");
+
+        }
+
+
+        private static int fullboard() // this function shows that all the areas are full.
+
+        {
+
+
+            #region Checking For Draw
+
+            // checing areas - full or empty
+
+            if (array1[1] != '1' && array1[2] != '2' && array1[3] != '3' && array1[4] != '4' && array1[5] != '5' && array1[6] != '6' && array1[7] != '7' && array1[8] != '8' && array1[9] != '9')
+
+            {
+
+                return 1; // if all areas are full -flag = 1 
+
+            }
+
+            #endregion
+
+
+
+            else
+
+            {
+
+                return 0; // if all areas are not full- flag = 0
+
+
+            }
+
+        }
+
+
+
+
+
+
+    }
+
+}
